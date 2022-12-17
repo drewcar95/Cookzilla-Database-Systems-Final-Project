@@ -1,0 +1,131 @@
+<html>
+<head>
+</head>
+<body>
+
+Recipe ID: {{recipeID}}
+<br>
+Title: {{title}}
+<br>
+Servings: {{numServings}}
+<br>
+<br>
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+Ingredients:
+
+<table>
+	<th>Name</th>
+	<th>Unit</th>
+	<th>Amount</th>
+	<th>Preferred Unit</th>
+	<th>Converted Amount</th>
+
+{% for line in ingredients %}
+	<tr>
+		<td>{{line.iName}}</td>
+		<td>{{line.unitName}}</td>
+		<td>{{line.amount}}</td>
+		<td>{{line.preferredUnit}}</td>
+		<td>{{line.convertamount}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<br>
+<form action="/postSummary2" method="POST">
+
+    <label>Unit</label>  
+    <select name = "unit1">  
+    {% for unit in unitconvdata %}
+	<option value = {{unit.sourceUnit}}> {{unit.sourceUnit}} 
+    </option> 
+    {% endfor %}
+    </select>
+    
+    <select name = "unit2">  
+    {% for unit in unitconvdata %}
+	<option value = {{unit.destinationUnit}}> {{unit.destinationUnit}} 
+    </option> 
+    {% endfor %}
+    </select>
+    
+	<input type="submit" value = "Convert Unit" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+<br>
+
+Recipe Steps:
+
+<table>
+	<th>Step No</th>
+	<th>Description</th>
+
+{% for line in steps %}
+	<tr>
+		<td>{{line.stepNo}}</td>
+		<td>{{line.sDesc}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<br>
+
+Recipe Tags:
+
+<table>
+	<th>Tag</th>
+
+{% for line in tags %}
+	<tr>
+		<td>{{line.tagText}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<br>
+
+Related Recipes:
+
+<table>
+	<th>Related Recipe</th>
+
+{% for rel in related %}
+	<tr>
+		<td>{{rel.recipe2}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<br>
+
+
+Images:
+
+<table>
+	<th>Image</th>
+
+{% for img in images %}
+	<tr>
+		<td>{{img.pictureURL}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+
+<br>
+<a href="/home">Home</a>
+<br>
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

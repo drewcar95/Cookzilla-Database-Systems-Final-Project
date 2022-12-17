@@ -1,0 +1,46 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Find and manage Events here, {{username}}</h1> 
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+Here are events for you to join:
+
+<table>
+    <th>EventID</th>
+	<th>Event Name</th>
+	<th>Event Description</th>
+    <th>Event Date</th>
+
+{% for line in posts %}
+	<tr>
+		<td>{{line.eID}}</td>
+		<td>{{line.eName}}</td>
+		<td>{{line.eDesc}}</td>
+        <td>{{line.eDate}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<br>
+
+<a href = "/createEvent">Create an Event</a>
+<br>
+<br>
+<a href="/home">Home</a>
+<br>
+<br>
+<a href="/logout">Logout</a>
+
+
+</body>
+
+
+</html>

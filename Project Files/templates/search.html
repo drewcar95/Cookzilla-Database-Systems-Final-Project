@@ -1,0 +1,29 @@
+<html>
+<head>
+</head>
+<body>
+Search by Recipe Title or Tag
+<form action="/searchForRecipe" method="POST">
+	<input type="text" name = "recipetitle" placeholder="Recipe Title"/> </br>
+	<input type="text" name = "tags" placeholder="Recipe Tags"/></br>
+	<input type="text" name = "rating" placeholder="Avg Recipe Rating"/></br>
+	<input type="submit" value = Search />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+<a href="/home">Back to Home</a>
+<br>
+<a href="/select_blogger">Search For a Blogger</a>
+<br>
+<a href="/searchbyIngredient">Search For an Ingredient</a>
+<br>
+
+
+</body>
+
+
+
+
+</html>

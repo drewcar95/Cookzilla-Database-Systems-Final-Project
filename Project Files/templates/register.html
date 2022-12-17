@@ -1,0 +1,40 @@
+<html>
+<head>
+</head>
+<body>
+<form action="/registerAuth" method="POST">
+	<input type="text" name = "username" placeholder="Username" required/> </br>
+	<input type="password" name = "password" placeholder="Password" required/></br>
+	<input type="text" name = "fname" placeholder="First Name" required/> </br>
+	<input type="text" name = "lname" placeholder="Last Name" required/> </br>
+	<input type="text" name = "email" placeholder="Email" required/> </br>
+	<input type="text" name = "profile" placeholder="Profile"/> </br>
+	
+	<label>Sold Unit Preference</label>
+    <select name = "sUnitPreference">  
+    {% for unit in sunit_data %}
+	<option value = {{unit.unitName}}> {{unit.unitName}} 
+    </option> 
+    {% endfor %}
+    </select>
+    <br>
+    <label>Liquid Unit Preference</label>  
+    <select name = "lUnitPreference">
+    {% for unit in lunit_data %}
+	<option value = {{unit.unitName}}> {{unit.unitName}} 
+    </option> 
+    {% endfor %}
+    </select>
+	<br>
+	<input type="submit" value = Register />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+<a href="/">Go back</a>
+
+</body>
+
+
+</html>

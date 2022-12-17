@@ -1,0 +1,56 @@
+<html>
+<head>
+</head>
+<body>
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<br>
+	
+<table>
+	<th>Recipe ID </th>
+	<th>Recipe Name </th>
+	<th>Posted By User </th>
+	<th>Avg Recipe Rating</th>
+	{% for line in Recipes %}
+	<tr>
+		<td>{{line.recipeID}}</td> 
+		<td>{{line.title}}</td>
+		<td>{{line.postedBy}}</td>
+		<td>{{line.avg}}</td>
+		
+	</tr>
+	{% endfor %}
+</table>
+
+
+<p>Choose a Recipe ID to view.</p>
+<form action="/viewRecipe" method="GET">
+{% for line in Recipes %}
+<input type="radio" name="recipeID" value={{line.recipeID}}>{{line.recipeID}}</input>
+	<br>
+{% endfor %}	
+<input type="submit" value="View Recipe">
+
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>	
+
+<br>
+<a href="/search">Back to Search</a>
+<br>
+<br>
+<a href="/home">Back to Profile Page</a>
+<br>
+<br>
+<a href="/logout">Logout</a>
+
+</body>
+		
+		
+</html>
+	

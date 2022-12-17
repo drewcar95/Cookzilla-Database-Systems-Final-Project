@@ -1,0 +1,166 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Welcome {{username}}</h1>
+
+Recipe ID: {{recipeID}}
+<br>
+Title: {{title}}
+<br>
+Servings: {{numServings}}
+<br>
+<br>
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+Ingredients:
+
+<table>
+	<th>Name</th>
+	<th>Unit</th>
+	<th>Amount</th>
+
+
+{% for line in ingredients %}
+	<tr>
+		<td>{{line.iName}}</td>
+		<td>{{line.unitName}}</td>
+		<td>{{line.amount}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<br>
+<form action="/recipeIngredients" method="POST">
+	<label>Ingredient Name</label>   
+    <input type="text" name = "ingredient" placeholder="Ingredient" required/> </br>
+    
+    <label>Unit</label>  
+    <select name = "unit">  
+    {% for unit in unit_data %}
+	<option value = {{unit.unitName}}> {{unit.unitName}} 
+    </option> 
+    {% endfor %}
+    </select>
+    
+    <input type="text" name = "amount" placeholder="Amount" required/> </br>
+    <input type="text" name = "restriction" placeholder="Restriction if any"/> </br>
+	
+	<input type="submit" value = "Add Ingredient" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+
+Recipe Steps:
+
+<table>
+	<th>Step No</th>
+	<th>Description</th>
+
+{% for line in steps %}
+	<tr>
+		<td>{{line.stepNo}}</td>
+		<td>{{line.sDesc}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<br>
+<form action="/recipeSteps" method="POST">
+	<input type="text" name = "stepDescription" placeholder="Step" required/> </br>
+	<input type="submit" value = "Add Step" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+<br>
+
+Recipe Tags:
+
+<table>
+	<th>Tag</th>
+
+{% for line in tags %}
+	<tr>
+		<td>{{line.tagText}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<br>
+<form action="/recipeTags" method="POST">
+	<input type="text" name = "tagText" placeholder="Tag" required/> </br>
+	<input type="submit" value = "Add Tag" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+<br>
+
+Related Recipes:
+
+<table>
+	<th>Related Recipe</th>
+
+{% for rel in related %}
+	<tr>
+		<td>{{rel.recipe2}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<br>
+<form action="/recipeTags" method="POST">
+	<input type="text" name = "relatedRecipeID" placeholder="Related Recipe ID" required/> </br>
+	<input type="submit" value = "Add Related Recipe" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+<br>
+
+
+Images:
+
+<table>
+	<th>Image</th>
+
+{% for img in images %}
+	<tr>
+		<td>{{img.pictureURL}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<br>
+<form action="/recipeImages" method="POST">
+	<input type="file" name = "newImage" placeholder="Image" required/> </br>
+	<input type="submit" value = "Upload Image" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+
+<br>
+<a href="/postSummary">Summary</a>
+<br>
+<a href="/home">Home</a>
+<br>
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>
