@@ -1,0 +1,19 @@
+<html>
+<head>
+</head>
+<body>
+<form action="/postRecipe" method="POST">
+	<input type="text" name = "title" placeholder="Title" required/> </br>
+	<input type="text" name = "servings" placeholder="Number of Servings" required/> </br>
+	<input type="submit" value = "Add Steps & Tags" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+<a href="/home">Go back</a>
+
+</body>
+
+
+</html>

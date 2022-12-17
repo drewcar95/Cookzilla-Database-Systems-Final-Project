@@ -1,0 +1,22 @@
+<html>
+<head>
+</head>
+<body>
+Reviewing RecipeID: {{recipeID}}
+
+<form action="/postReview" method="POST">
+	<input type="text" name = "reviewTitle" placeholder="Title of Review" required/> </br>
+	<input type="text" name = "review" placeholder="Review" required/> </br>
+	<input type="text" name = "rating" placeholder="Rating between 1 and 5"  required/> </br>
+	<input type="submit" value = "Post Review" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+<a href="/home">Go back</a>
+
+</body>
+
+
+</html>

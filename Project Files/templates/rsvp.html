@@ -1,0 +1,87 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Welcome {{username}}</h1> 
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+Here are Events for you to reserve:
+
+<table>
+	<th>Event ID</th>
+	<th>Event Name</th>
+	<th>Event Description</th>
+	<th>Event Date</th>
+	<!-- <th>Response</th> -->
+
+{% for line in posts %}
+	<tr>
+		<td>{{line.eID}}</td>
+		<td>{{line.eName}}</td>
+		<td>{{line.eDesc}}</td>
+		<td>{{line.eDate}}</td>
+		<!-- <td>{{line.response}}</td> -->
+	</tr>
+{% endfor %}
+</table>
+<br>
+
+Here are your Reservations:
+
+<table>
+	<th>Event ID</th>
+	<th>Event Name</th>
+	<th>Event Description</th>
+	<th>Event Date</th>
+	<th>Reservation Response</th>
+
+{% for rsvp in rsvps %}
+	<tr>
+		<td>{{rsvp.eID}}</td>
+		<td>{{rsvp.eName}}</td>
+		<td>{{rsvp.eDesc}}</td>
+		<td>{{rsvp.eDate}}</td>
+		<td>{{rsvp.response}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<p>Make a Reservation!</p>
+
+<form method="post">
+    <label for="eID">Event ID</label>
+    <input type="text" name="eID" id="eID">
+    <br>
+    <label for="response">Do you want to attend?</label>
+    <select name="response" id="response">
+        {% for r in responses %}
+        <option value="{{ r }}">{{ r }}</option>
+        {% endfor %}
+   </select>
+    <br> 
+    <input type="submit">
+	{% if error2 %}
+    <p class="error2"><strong>Error:</strong> {{error2}}</p>
+    {% endif %}
+    {% if remind %}
+    <p class="remind"><strong>Remind:</strong> {{remind}}</p>
+    {% endif %}
+</form>
+
+
+<br>
+<a href="/home">Home</a>
+<br>
+<br>
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

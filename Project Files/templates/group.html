@@ -1,0 +1,72 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Groups for you, {{username}}</h1> 
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+Here are groups for you to join:
+
+<table>
+	<th>Group Name</th>
+	<th>Group Creator</th>
+	<th>Group Description</th>
+
+{% for line in posts %}
+	<tr>
+		<td>{{line.gName}}</td>
+		<td>{{line.gCreator}}</td>
+		<td>{{line.gDesc}}</td>
+	</tr>
+{% endfor %}
+</table>
+<br>
+
+Join a Group!
+
+<form action="/joinGroup" method="POST">
+	<input type="text" name = "memberName" placeholder="your user name" required/> </br>
+    <input type="text" name = "gName" placeholder="Group Name" required/> </br>
+	<input type="text" name = "gCreator" placeholder="Group Creator's Name" required/> </br>
+	<input type="submit" value = "JoinNow" />
+	{% if error1 %}
+		<p class="error1"><strong>Error:</strong> {{error1}}</p>
+	{% endif %}
+
+    {% if remind1 %}
+        <p class="remind1"><strong>Remind:</strong> {{remind1}}</p>
+    {% endif %}
+</form>
+
+Create a Group!
+
+<form action="/CreateGroup" method="POST">
+    <input type="text" name = "gName" placeholder="Group Name" required/> </br>
+	<input type="text" name = "gDesc" placeholder="Group Descriptions" required/> </br>
+	<input type="submit" value = "Create" />
+	{% if error2 %}
+		<p class="error2"><strong>Error:</strong> {{error2}}</p>
+	{% endif %}
+
+    {% if remind2 %}
+        <p class="remind2"><strong>Remind:</strong> {{remind2}}</p>
+    {% endif %}
+</form>
+
+<br>
+<a href="/home">Home</a>
+<br>
+<br>
+<a href="/logout">Logout</a>
+
+
+</body>
+
+
+</html>

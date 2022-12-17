@@ -1,0 +1,52 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Welcome {{username}}</h1>
+{% for line in userAVG %}
+<h2>Your Average Recipe Rating is {{line.userAVG}}</h2> 
+{% endfor %}
+
+
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+Here are your recipes:
+
+<table>
+	<th>Recipe ID</th>
+	<th>Title</th>
+	<th>Servings</th>
+
+{% for line in posts %}
+	<tr>
+		<td>{{line.recipeID}}</td>
+		<td>{{line.title}}</td>
+		<td>{{line.numServings}}</td>
+	</tr>
+{% endfor %}
+</table>
+<br>
+<a href="/post">Post a Recipe</a>
+<br>
+<a href="/event">Events</a>
+<br>
+<a href="/rsvp">Reservations</a>
+<br>
+<a href="/group">Groups</a>
+<br>
+<a href="/search">Search For a Recipe</a>
+<br>
+<br>
+<a href="/logout">Logout</a>
+
+
+</body>
+
+
+</html>

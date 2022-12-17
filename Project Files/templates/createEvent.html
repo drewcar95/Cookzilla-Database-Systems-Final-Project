@@ -1,0 +1,47 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Create amazing events, {{username}}</h1> 
+
+{% if error1 %}
+<p class="error1"><strong>Error:</strong> {{error1}}</p>
+{% endif %}
+
+
+<form method="post">
+    <label for="eName">Event Name</label>
+    <input type="text" name="eName" id="eName">
+    <br>
+    <label for="eventDesc">Event Description</label>
+    <input type="text" name="eDesc" id="eDesc">
+    <br>
+    <label for="eDate">Event Date</label>
+    <input type="date" name="eDate" id="eDate">
+    <br>
+    <label for="gName">Group Name</label>
+    <select name="gName" id="gName">
+        {% for o in groupnames %}
+        <option value="{{ o.gName }}">{{ o.gName }}</option>
+        {% endfor %}
+   </select>
+    <br> 
+    <input type="submit">
+    {% if remind %}
+    <p class="remind"><strong>Remind:</strong> {{remind}}</p>
+    {% endif %}
+</form>
+
+
+<a href="/event" >Event</a>
+<!-- <a href="/rsvp">Reservations</a> -->
+<br>
+<a href="/home">Home</a>
+<a href="/logout">Logout</a>
+
+
+</body>
+
+
+</html>

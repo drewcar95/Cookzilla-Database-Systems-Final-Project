@@ -1,0 +1,172 @@
+<html>
+<head>
+</head>
+<body>
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+
+Here is RecipeID: {{recipeID}}
+
+
+<table>
+	<th>Recipe Name</th>
+	<th>Servings</th>
+	<th>Posted By</th>
+
+{% for line in recipedata %}
+	<tr>
+		<td>{{line.title}}</td>
+		<td>{{line.numServings}}</td>
+		<td>{{line.postedBy}}</td>
+	</tr>
+{% endfor %}
+</table>
+<br>
+Ingredients:
+<table>
+	<th>Name</th>
+	<th>Unit</th>
+	<th>Quantity</th>
+	<th>Preferred Unit</th>
+	<th>Converted Quantity</th>
+
+{% for line in ingredients %}
+	<tr>
+		<td>{{line.iName}}</td>
+		<td>{{line.unitName}}</td>
+		<td>{{line.amount}}</td>
+		<td>{{line.preferredUnit}}</td>
+		<td>{{line.convertamount}}</td>
+	</tr>
+{% endfor %}
+</table>
+<br>
+<form action="/viewRecipe2" method="POST">
+
+    <label>Unit</label>  
+    <select name = "unit1">  
+    {% for unit in unitconvdata %}
+	<option value = {{unit.sourceUnit}}> {{unit.sourceUnit}} 
+    </option> 
+    {% endfor %}
+    </select>
+    
+    <select name = "unit2">  
+    {% for unit in unitconvdata %}
+	<option value = {{unit.destinationUnit}}> {{unit.destinationUnit}} 
+    </option> 
+    {% endfor %}
+    </select>
+    
+	<input type="submit" value = "Convert Unit" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+<br>
+
+Recipe Steps:
+
+<table>
+	<th>Step No</th>
+	<th>Description</th>
+
+{% for line in stepdata %}
+	<tr>
+		<td>{{line.stepNo}}</td>
+		<td>{{line.sDesc}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<br>
+
+Recipe Tags:
+
+<table>
+	<th>Tag</th>
+
+{% for line in tagdata %}
+	<tr>
+		<td>{{line.tagText}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<br>
+
+Related Recipes:
+
+<table>
+	<th>Related Recipe</th>
+
+{% for rel in related %}
+	<tr>
+		<td>{{rel.recipe2}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<br>
+
+
+Images:
+
+<table>
+	<th>Image</th>
+
+{% for img in imgdata %}
+	<tr>
+		<td>{{img.pictureURL}}</td>
+	</tr>
+{% endfor %}
+</table>
+<br>
+Reviews:
+<table>
+	<th>Title</th>
+	<th>Review</th>
+	<th>Rating 1-5</th>
+	<th>Reviewer</th>
+
+
+{% for line in revs %}
+	<tr>
+		<td>{{line.revTitle}}</td>
+		<td>{{line.revDesc}}</td>
+		<td>{{line.stars}}</td>
+		<td>{{line.userName}}</td>
+
+	</tr>
+{% endfor %}
+</table>
+<form action="/postReview" method="POST">
+	<input type="text" name = "reviewTitle" placeholder="Title of Review" required/> </br>
+	<input type="text" name = "review" placeholder="Review" required/> </br>
+	<input type="text" name = "rating" placeholder="Rating between 1 and 5"  required/> </br>
+	<input type="submit" value = "Post Review" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+
+<br>
+<br>
+<a href="/search">Back to Search</a>
+<br>
+<br>
+<a href="/home">Back to Home</a>
+<br>
+<br>
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

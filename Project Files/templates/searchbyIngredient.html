@@ -1,0 +1,24 @@
+<html>
+<head>
+</head>
+<body>
+Search by Recipe Title or Tag
+<form action="/ingredientSearch" method="POST">
+	<input type="text" name = "ingredient" placeholder="Ingredient"/> </br>
+	<input type="submit" value = Search />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+<a href="/home">Back to Home</a>
+<br>
+<a href="/search">Back to Main Search</a>
+<br>
+
+</body>
+
+
+
+
+</html>
