@@ -1,5 +1,7 @@
 # Database-Systems-Final-Project
 
+This project is completed by Andrew Tavcar, Wei Zhao and Vedang Mondreti.
+
 Start by installing the Database and Web Server Software needed. 
 See DB-Installation.pdf
 
