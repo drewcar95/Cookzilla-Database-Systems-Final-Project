@@ -6,7 +6,7 @@ See DB-Installation.pdf
 After installation and establishing a connection on port 3336, open Localhost:8888 on your web browser and start a new database. 
 Once started, you can import the tabledefinitions file and see that your database has been created. 
 
-Lastly, import some initial data into the database using tableinserts file so that we can start off with an already filled database with other recipes already posted.
+Lastly, import some initial data into the database using tableinserts so that we can start off with an already filled database with other recipes already posted.
 
 Our project was completed using Python/Flask to create our web applications and HTML for the Front end. 
 Install the following packages...
